@@ -5,7 +5,7 @@ Vagrant.configure(2) do |config|
   config.vm.box = "ubuntu/vivid64"
   config.vm.box_check_update = false
   config.vm.hostname = "ironman"
-  config.vm.synced_folder ENV["USERPROFILE"] + "/dev", "/host-dev"
+  config.vm.synced_folder ENV["USERPROFILE"] + "/dev", "/mnt/host-dev"
 
   config.vm.provider "virtualbox" do |vb|
     vb.name = "dev-box-linux"
