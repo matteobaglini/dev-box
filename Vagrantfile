@@ -23,12 +23,22 @@ Vagrant.configure(2) do |config|
     echo "Install and update basic packeges"
     sudo apt-get update --fix-missing >/dev/null
     sudo apt-get remove -y vim-tiny >/dev/null
-    sudo apt-get install -y git vim curl wget unzip virtualbox-guest-* >/dev/null
+    sudo apt-get install -y git vim curl wget whois unzip virtualbox-guest-* >/dev/null
 
-    echo "Set system configuration settings"
+    echo "Configure system settings"
     sudo timedatectl set-timezone Europe/Rome
     sudo update-locale LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8
     echo "%sudo ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+
+    echo "Create user"
+    if ! id -u matteo >/dev/null 2>&1; then
+        sudo useradd --create-home \
+                     --groups sudo \
+                     --comment "Matteo Baglini" \
+                     --password ctM0SBzcd0pi. \
+                     --shell /bin/bash \
+                     matteo
+    fi
   SHELL
 
   config.vm.provision "docker" do |d|
