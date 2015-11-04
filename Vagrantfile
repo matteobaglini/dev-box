@@ -21,16 +21,16 @@ Vagrant.configure(2) do |config|
 
   config.vm.provision "shell", inline: <<-SHELL
     echo "Install and update basic packeges"
-    sudo apt-get update --fix-missing >/dev/null
-    sudo apt-get remove -y vim-tiny >/dev/null
-    sudo apt-get install -y git vim curl wget whois unzip virtualbox-guest-* >/dev/null
+    sudo apt-get update --fix-missing >/dev/null 2>&1
+    sudo apt-get remove -y vim-tiny >/dev/null 2>&1
+    sudo apt-get install -y git vim curl wget whois unzip virtualbox-guest-* >/dev/null 2>&1
 
     echo "Configure system settings"
     sudo timedatectl set-timezone Europe/Rome
     sudo update-locale LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8
     echo "%sudo ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 
-    echo "Create user"
+    echo "Create custom user"
     if ! id -u matteo >/dev/null 2>&1; then
         sudo useradd --create-home \
                      --groups sudo \
