@@ -39,6 +39,8 @@ Vagrant.configure(2) do |config|
                      --shell /bin/bash \
                      matteo
     fi
+
+    echo "That's all, rock on!"
   SHELL
 
   config.vm.provision "docker" do |d|
