@@ -19,7 +19,7 @@ Vagrant.configure(2) do |config|
     vb.customize ["modifyvm", :id, "--ioapic", "on"]
   end
 
-  config.vm.provision "shell", inline: <<-SHELL
+  config.vm.provision "shell", inline: <<-SHELL.gsub(/^ +/, '')
     echo "Install and update basic packeges"
     sudo apt-get update --fix-missing >/dev/null 2>&1
     sudo apt-get remove -y vim-tiny >/dev/null 2>&1
@@ -39,6 +39,17 @@ Vagrant.configure(2) do |config|
                      --shell /bin/bash \
                      matteo
     fi
+
+    echo "Install the latest Node stable version using NVM"
+    sudo -iu matteo <<HEREDOC
+      if [ ! -d ~/.nvm ]; then
+          wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.29.0/install.sh \
+            | bash 2>&1
+      fi
+      source ~/.nvm/nvm.sh
+      nvm install stable 2>/dev/null
+      nvm alias default stable
+    HEREDOC
 
     echo "That's all, rock on!"
   SHELL
