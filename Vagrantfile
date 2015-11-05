@@ -53,11 +53,4 @@ Vagrant.configure(2) do |config|
 
     echo "That's all, rock on!"
   SHELL
-
-  config.vm.provision "docker" do |d|
-      d.pull_images "mongo:3.0"
-      d.pull_images "redis:3.0"
-      d.pull_images "rabbitmq:3.5-management"
-      d.pull_images "mysql:5.7"
-  end
 end
