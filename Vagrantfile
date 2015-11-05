@@ -40,15 +40,15 @@ Vagrant.configure(2) do |config|
                      matteo
     fi
 
-    echo "Install the latest Node stable version using NVM"
+    echo "Install the latest Node version using NVM"
     sudo -iu matteo <<HEREDOC
       if [ ! -d ~/.nvm ]; then
           wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.29.0/install.sh \
             | bash 2>&1
       fi
       source ~/.nvm/nvm.sh
-      nvm install stable 2>/dev/null
-      nvm alias default stable
+      nvm install node 2>/dev/null
+      nvm alias default node
     HEREDOC
 
     echo "That's all, rock on!"
