@@ -22,7 +22,6 @@ Vagrant.configure(2) do |config|
   config.vm.provision "shell", inline: <<-SHELL.gsub(/^ +/, '')
     echo "Install and update basic packeges"
     sudo apt-get update --fix-missing >/dev/null 2>&1
-    sudo apt-get remove -y vim-tiny >/dev/null 2>&1
     sudo apt-get install -y git vim curl wget whois unzip virtualbox-guest-* >/dev/null 2>&1
 
     echo "Configure system settings"
@@ -50,6 +49,10 @@ Vagrant.configure(2) do |config|
       nvm install node 2>/dev/null
       nvm alias default node
     HEREDOC
+
+    echo "Install Docker"
+    sudo apt-get install -y docker.io >/dev/null 2>&1
+    sudo usermod -aG docker matteo
 
     echo "That's all, rock on!"
   SHELL
