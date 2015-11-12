@@ -21,8 +21,8 @@ Vagrant.configure(2) do |config|
 
   config.vm.provision "shell", inline: <<-SHELL.gsub(/^ +/, '')
     echo "Install and update basic packeges"
-    sudo apt-get update --fix-missing >/dev/null 2>&1
-    sudo apt-get install -y git vim curl wget whois unzip virtualbox-guest-* >/dev/null 2>&1
+    sudo apt-get update --fix-missing >/dev/null
+    sudo apt-get install -y git vim curl wget whois unzip virtualbox-guest-* >/dev/null
 
     echo "Configure system settings"
     sudo timedatectl set-timezone Europe/Rome
@@ -43,15 +43,15 @@ Vagrant.configure(2) do |config|
     sudo -iu matteo <<HEREDOC
       if [ ! -d ~/.nvm ]; then
           wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.29.0/install.sh \
-            | bash 2>&1
+            | bash
       fi
       source ~/.nvm/nvm.sh
-      nvm install node 2>/dev/null
+      nvm install node
       nvm alias default node
     HEREDOC
 
     echo "Install Docker"
-    sudo apt-get install -y docker.io >/dev/null 2>&1
+    sudo apt-get install -y docker.io >/dev/null
     sudo usermod -aG docker matteo
 
     echo "That's all, rock on!"
