@@ -37,6 +37,7 @@ Vagrant.configure(2) do |config|
                      --password ctM0SBzcd0pi. \
                      --shell /bin/bash \
                      matteo
+        sudo touch /home/matteo/.hushlogin
     fi
 
     echo "Install the latest Node version using NVM"
