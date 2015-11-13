@@ -40,6 +40,15 @@ Vagrant.configure(2) do |config|
         sudo touch /home/matteo/.hushlogin
     fi
 
+    echo "Install Powerline fonts"
+    sudo -iu matteo <<HEREDOC
+      if [ ! -d ~/.fonts ]; then
+        git clone --recursive https://github.com/powerline/fonts/ powerline_fonts
+        powerline_fonts/install.sh
+        fc-cache -vf ~/.fonts/
+      fi
+    HEREDOC
+
     echo "Install the latest Node version using NVM"
     sudo -iu matteo <<HEREDOC
       if [ ! -d ~/.nvm ]; then
