@@ -2,7 +2,7 @@
 # vi: set ft=ruby :
 
 Vagrant.configure(2) do |config|
-  config.vm.box = "ubuntu/wily64"
+  config.vm.box = "ubuntu/vivid64"
   config.vm.box_check_update = false
   config.vm.hostname = "ironman"
   config.vm.synced_folder ENV["USERPROFILE"] + "/dev", "/mnt/host-dev"
