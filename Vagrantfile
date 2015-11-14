@@ -49,6 +49,16 @@ Vagrant.configure(2) do |config|
       fi
     HEREDOC
 
+    echo "Install dotfiles"
+    sudo -iu matteo <<HEREDOC
+      if [ ! -d ~/dotfiles ]; then
+        git clone https://github.com/matteobaglini/dotfiles.git ~/dotfiles
+      fi
+      cd ~/dotfiles
+      bash install.sh
+      cd ..
+    HEREDOC
+
     echo "Install the latest Node version using NVM"
     sudo -iu matteo <<HEREDOC
       if [ ! -d ~/.nvm ]; then
