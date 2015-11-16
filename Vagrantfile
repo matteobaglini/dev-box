@@ -56,7 +56,6 @@ Vagrant.configure(2) do |config|
       fi
       cd ~/dotfiles
       bash install.sh
-      cd ..
     HEREDOC
 
     echo "Install the latest Node version using NVM"
