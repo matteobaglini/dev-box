@@ -70,7 +70,7 @@ Vagrant.configure(2) do |config|
     HEREDOC
 
     echo "Install Docker"
-    sudo apt-get install -y docker.io >/dev/null
+    wget -qO- https://get.docker.com/ | bash
     sudo usermod -aG docker matteo
 
     echo "That's all, rock on!"
