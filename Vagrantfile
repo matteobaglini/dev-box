@@ -70,8 +70,10 @@ Vagrant.configure(2) do |config|
     HEREDOC
 
     echo "Install Docker"
-    wget -qO- https://get.docker.com/ | bash
-    sudo usermod -aG docker matteo
+    if ! docker version &>/dev/null; then
+        wget -qO- https://get.docker.com/ | bash
+        sudo usermod -aG docker matteo
+    fi
 
     echo "That's all, rock on!"
   SHELL
