@@ -30,7 +30,7 @@ Vagrant.configure(2) do |config|
     echo "%sudo ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 
     echo "Create custom user"
-    if ! id -u matteo >/dev/null 2>&1; then
+    if ! id -u matteo &>/dev/null; then
         sudo useradd --create-home \
                      --groups sudo \
                      --comment "Matteo Baglini" \
