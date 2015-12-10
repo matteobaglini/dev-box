@@ -40,15 +40,6 @@ Vagrant.configure(2) do |config|
         sudo touch /home/matteo/.hushlogin
     fi
 
-    echo "Install Powerline fonts"
-    sudo -iu matteo <<HEREDOC
-      if [ ! -d ~/powerline_fonts ]; then
-        git clone --recursive https://github.com/powerline/fonts/ powerline_fonts
-        cd ~/powerline_fonts
-        bash install.sh
-      fi
-    HEREDOC
-
     echo "Install dotfiles"
     sudo -iu matteo <<HEREDOC
       if [ ! -d ~/dotfiles ]; then
