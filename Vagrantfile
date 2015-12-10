@@ -23,7 +23,7 @@ Vagrant.configure(2) do |config|
   config.vm.provision "shell", inline: <<-SHELL.gsub(/^ +/, '')
     echo "Install and update basic packeges"
     sudo apt-get update --fix-missing >/dev/null
-    sudo apt-get install -y git vim curl wget whois unzip >/dev/null
+    sudo apt-get install -y git vim curl wget whois unzip xclip >/dev/null
     sudo apt-get install xorg gnome-core gnome-system-tools gnome-app-install >/dev/null
 
     echo "Configure system settings"
