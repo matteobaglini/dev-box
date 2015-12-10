@@ -43,7 +43,7 @@ Vagrant.configure(2) do |config|
     echo "Install dotfiles"
     sudo -iu matteo <<HEREDOC
       if [ ! -d ~/dotfiles ]; then
-        git clone https://github.com/matteobaglini/dotfiles.git ~/dotfiles
+        git clone --depth 1 https://github.com/matteobaglini/dotfiles.git ~/dotfiles
       fi
       cd ~/dotfiles
       bash install.sh
