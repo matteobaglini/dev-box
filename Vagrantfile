@@ -45,7 +45,9 @@ Vagrant.configure(2) do |config|
     echo "Install dotfiles"
     sudo -iu matteo <<HEREDOC
       if [ ! -d ~/dotfiles ]; then
-        git clone --depth 1 https://github.com/matteobaglini/dotfiles.git ~/dotfiles
+        git clone --depth 1 \
+            https://github.com/matteobaglini/dotfiles.git \
+            ~/dotfiles
       fi
       cd ~/dotfiles
       bash install.sh
@@ -54,8 +56,9 @@ Vagrant.configure(2) do |config|
     echo "Install the latest Node version using NVM"
     sudo -iu matteo <<HEREDOC
       if [ ! -d ~/.nvm ]; then
-          wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.29.0/install.sh \
-            | bash
+          wget -qO- \
+           https://raw.githubusercontent.com/creationix/nvm/v0.29.0/install.sh \
+           | bash
       fi
       source ~/.nvm/nvm.sh
       nvm install node
