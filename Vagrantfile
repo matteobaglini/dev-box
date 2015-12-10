@@ -11,8 +11,9 @@ Vagrant.configure(2) do |config|
     vb.name = "dev-box-linux"
     vb.memory = 2048
     vb.cpus = 2
+    vb.gui = true
 
-    vb.customize ["modifyvm", :id, "--accelerate3d", "off"]
+    vb.customize ["modifyvm", :id, "--accelerate3d", "on"]
     vb.customize ["modifyvm", :id, "--clipboard", "bidirectional"]
     vb.customize ["modifyvm", :id, "--vram", "256"]
     vb.customize ["modifyvm", :id, "--acpi", "on"]
@@ -23,6 +24,7 @@ Vagrant.configure(2) do |config|
     echo "Install and update basic packeges"
     sudo apt-get update --fix-missing >/dev/null
     sudo apt-get install -y git vim curl wget whois unzip >/dev/null
+    sudo apt-get install xorg gnome-core gnome-system-tools gnome-app-install >/dev/null
 
     echo "Configure system settings"
     sudo timedatectl set-timezone Europe/Rome
