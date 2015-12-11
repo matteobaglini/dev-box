@@ -23,8 +23,9 @@ Vagrant.configure(2) do |config|
   config.vm.provision "shell", inline: <<-SHELL.gsub(/^ +/, '')
     echo "Install and update basic packeges"
     sudo apt-get update --fix-missing >/dev/null
-    sudo apt-get install -y git vim curl wget whois unzip xclip >/dev/null
-    sudo apt-get install -y xorg gnome-core gnome-system-tools gnome-app-install >/dev/null
+    sudo apt-get install -y git vim curl wget whois unzip xclip xorg \
+                            gnome-core gnome-system-tools gnome-app-install \
+                            >/dev/null
 
     echo "Configure system settings"
     sudo timedatectl set-timezone Europe/Rome
@@ -56,9 +57,8 @@ Vagrant.configure(2) do |config|
     echo "Install the latest Node version using NVM"
     sudo -iu matteo <<HEREDOC
       if [ ! -d ~/.nvm ]; then
-          wget -qO- \
-           https://raw.githubusercontent.com/creationix/nvm/v0.29.0/install.sh \
-           | bash
+          wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.29.0/install.sh \
+                | bash
       fi
       source ~/.nvm/nvm.sh
       nvm install node
