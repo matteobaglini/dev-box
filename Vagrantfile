@@ -24,7 +24,7 @@ Vagrant.configure(2) do |config|
     echo "Install and update basic packeges"
     sudo apt-get update --fix-missing >/dev/null
     sudo apt-get install -y git vim curl wget whois unzip xclip xorg \
-                            gnome-core gnome-system-tools gnome-app-install \
+                            gdm gnome-terminal \
                             >/dev/null
 
     echo "Configure system settings"
