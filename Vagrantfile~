@@ -5,13 +5,13 @@ Vagrant.configure(2) do |config|
   config.vm.box = "ubuntu/xenial64"
   config.vm.box_check_update = false
   config.vm.hostname = "ironman"
-  # config.vm.synced_folder ENV["USERPROFILE"] + "/dev", "/mnt/host-dev"
+  config.vm.synced_folder ENV["USERPROFILE"] + "/dev", "/mnt/host-dev"
 
   config.vm.provider "virtualbox" do |vb|
     vb.name = "dev-box-linux"
-    vb.memory = 4096
+    vb.memory = 2048
     vb.cpus = 2
-    # vb.gui = true
+    vb.gui = true
 
     vb.customize ["modifyvm", :id, "--accelerate3d", "on"]
     vb.customize ["modifyvm", :id, "--clipboard", "bidirectional"]
@@ -42,40 +42,6 @@ Vagrant.configure(2) do |config|
                      matteo
     fi
 
-    echo "Install dotfiles"
-    sudo -iu matteo <<HEREDOC
-      if [ ! -d ~/dotfiles ]; then
-        git clone --depth 1 \
-            https://github.com/matteobaglini/dotfiles.git \
-            ~/dotfiles
-      fi
-      cd ~/dotfiles
-      bash install.sh
-    HEREDOC
-
-    echo "Install the latest Node version using NVM"
-    sudo -iu matteo <<HEREDOC
-      if [ ! -d ~/.nvm ]; then
-          wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.31.2/install.sh \
-                | bash
-      fi
-      source ~/.nvm/nvm.sh
-      nvm install node
-      nvm alias default node
-    HEREDOC
-
-    echo "Install Docker and tools"
-    sudo -i <<HEREDOC
-        if ! docker version &>/dev/null; then
-            wget -qO- https://get.docker.com/ | bash
-            sudo usermod -aG docker matteo
-        fi
-        if ! docker-compose --version &>/dev/null; then
-            curl -L https://github.com/docker/compose/releases/download/1.7.1/docker-compose-`uname -s`-`uname -m` \
-                    > /usr/local/bin/docker-compose
-            chmod +x /usr/local/bin/docker-compose
-        fi
-    HEREDOC
     echo "That's all, rock on!"
   SHELL
 end
