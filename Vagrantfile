@@ -11,7 +11,7 @@ Vagrant.configure(2) do |config|
     vb.name = "dev-box-linux"
     vb.memory = 4096
     vb.cpus = 2
-    # vb.gui = true
+    vb.gui = true
 
     vb.customize ["modifyvm", :id, "--accelerate3d", "on"]
     vb.customize ["modifyvm", :id, "--clipboard", "bidirectional"]
@@ -23,9 +23,11 @@ Vagrant.configure(2) do |config|
   config.vm.provision "shell", inline: <<-SHELL.gsub(/^ +/, '')
     echo "Install and update basic packeges"
     sudo apt-get update --fix-missing >/dev/null
-    sudo apt-get install -y git vim-gnome curl wget whois unzip \
-                            tree xclip xorg gdm gnome-terminal \
-                            >/dev/null
+    sudo apt-get install -y git curl wget whois unzip tree \
+                            build-essential unclutter \
+                            xorg xclip x11-utils autocutsel \
+                            gdm gnome-terminal vim-gnome \
+                            dconf-cli >/dev/null
 
     echo "Configure system settings"
     sudo timedatectl set-timezone Europe/Rome
@@ -76,6 +78,11 @@ Vagrant.configure(2) do |config|
             chmod +x /usr/local/bin/docker-compose
         fi
     HEREDOC
+
+    if ! sudo service gdm status | grep active; then
+      sudo service gdm start
+    fi
+
     echo "That's all, rock on!"
   SHELL
 end
