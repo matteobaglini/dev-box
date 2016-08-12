@@ -60,7 +60,7 @@ Vagrant.configure(2) do |config|
     echo "Install the latest Node version using NVM"
     sudo -iu matteo <<HEREDOC
       if [ ! -d ~/.nvm ]; then
-          wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.31.2/install.sh \
+          wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.31.4/install.sh \
                 | bash
       fi
       source ~/.nvm/nvm.sh
@@ -75,7 +75,7 @@ Vagrant.configure(2) do |config|
             sudo usermod -aG docker matteo
         fi
         if ! docker-compose --version &>/dev/null; then
-            curl -L https://github.com/docker/compose/releases/download/1.7.1/docker-compose-`uname -s`-`uname -m` \
+            curl -L https://github.com/docker/compose/releases/download/1.8.0/docker-compose-`uname -s`-`uname -m` \
                     > /usr/local/bin/docker-compose
             chmod +x /usr/local/bin/docker-compose
         fi
