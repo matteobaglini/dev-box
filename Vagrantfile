@@ -22,12 +22,13 @@ Vagrant.configure(2) do |config|
 
   config.vm.provision "shell", inline: <<-SHELL.gsub(/^ +/, '')
     echo "Install and update basic packeges"
-    sudo apt-get update --fix-missing >/dev/null
-    sudo apt-get install -y git curl wget whois unzip tree \
-                            build-essential unclutter \
-                            xorg xclip x11-utils autocutsel \
-                            gdm gnome-terminal vim-gnome \
-                            dconf-cli >/dev/null
+    sudo aptitude -q -y update
+    sudo aptitude -q -y dist-upgrade
+	sudo aptitude -q -y install git curl wget whois unzip tree \
+								linux-kernel-headers build-essential \
+								xorg xclip x11-utils autocutsel \
+								gdm gnome-terminal vim-gnome \
+								unclutter >/dev/null
 
     echo "Configure system settings"
     sudo timedatectl set-timezone Europe/Rome
