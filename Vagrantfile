@@ -22,6 +22,7 @@ Vagrant.configure(2) do |config|
 
   config.vm.provision "shell", inline: <<-SHELL.gsub(/^ +/, '')
     echo "Install and update basic packeges"
+	sudo add-apt-repository ppa:gnome3-team/gnome3
     sudo aptitude -q -y update
     sudo aptitude -q -y dist-upgrade
 	sudo aptitude -q -y install git curl wget whois unzip tree \
