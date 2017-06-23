@@ -61,7 +61,7 @@ sudo -i <<HEREDOC
     fi
 HEREDOC
 
-if ! sudo service gdm status | grep active; then
+if sudo service gdm status | grep active; then
     sudo service gdm start
 fi
 
