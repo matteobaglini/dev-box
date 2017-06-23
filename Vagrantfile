@@ -5,7 +5,6 @@ $script = <<-SHELL
 echo "Install and update basic packeges"
 sudo add-apt-repository ppa:gnome3-team/gnome3
 sudo aptitude -q -y update
-sudo aptitude -q -y dist-upgrade
 sudo aptitude -q -y install git curl wget whois unzip tree \
                             linux-kernel-headers build-essential \
                             xorg xclip x11-utils autocutsel \
