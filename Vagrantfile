@@ -61,10 +61,7 @@ sudo -i <<HEREDOC
     fi
 HEREDOC
 
-if sudo service gdm status | grep active; then
-    sudo service gdm start
-fi
-
+echo "Remember to reboot the box"
 echo "That's all, rock on!"
 SHELL
 
