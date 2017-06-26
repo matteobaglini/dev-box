@@ -4,8 +4,8 @@
 $script = <<-SHELL
 echo "Install and update basic packeges"
 sudo add-apt-repository ppa:gnome3-team/gnome3
-sudo aptitude -q -y update
-sudo aptitude -q -y install git curl wget whois unzip tree \
+sudo apt-get update -q -y 
+sudo apt-get install -q -y git curl wget whois unzip tree \
                             linux-kernel-headers build-essential \
                             xorg xclip x11-utils autocutsel \
                             gdm gnome-terminal vim-gnome \
@@ -15,6 +15,14 @@ echo "Configure system settings"
 sudo timedatectl set-timezone Europe/Rome
 sudo update-locale LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8
 echo "%sudo ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+
+echo "Install Google Chrome"
+if [ ! -f /etc/apt/sources.list.d/google.list ]; then
+    wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+    echo "deb http://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google.list
+    sudo apt-get update
+    sudo apt-get install -q -y google-chrome-stable
+fi
 
 echo "Create custom user"
 if ! id -u matteo &>/dev/null; then
@@ -54,9 +62,9 @@ echo "Install Java"
 sudo -iu matteo <<HEREDOC
     if ! javac -version &>/dev/null; then
         sudo add-apt-repository ppa:webupd8team/java
-        sudo apt-get -q -y update
+        sudo apt-get update -q -y 
         echo oracle-java8-set-default shared/accepted-oracle-license-v1-1 select true | sudo /usr/bin/debconf-set-selections
-        sudo apt-get -q -y install oracle-java8-set-default
+        sudo apt-get install -q -y oracle-java8-set-default
     fi
 HEREDOC
 
