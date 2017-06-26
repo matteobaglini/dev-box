@@ -50,6 +50,16 @@ sudo -iu matteo <<HEREDOC
     nvm alias default node
 HEREDOC
 
+echo "Install Java"
+sudo -iu matteo <<HEREDOC
+    if ! javac -version &>/dev/null; then
+        sudo add-apt-repository ppa:webupd8team/java
+        sudo apt-get -q -y update
+        echo oracle-java8-set-default shared/accepted-oracle-license-v1-1 select true | sudo /usr/bin/debconf-set-selections
+        sudo apt-get -q -y install oracle-java8-set-default
+    fi
+HEREDOC
+
 echo "Install Docker and tools"
 sudo -i <<HEREDOC
     if ! docker version &>/dev/null; then
