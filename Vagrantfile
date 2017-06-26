@@ -19,11 +19,13 @@ echo "%sudo ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 echo "Create custom user"
 if ! id -u matteo &>/dev/null; then
     sudo useradd --create-home \
+                    --gid users \
                     --groups sudo \
                     --comment "Matteo Baglini" \
                     --password ctM0SBzcd0pi. \
                     --shell /bin/bash \
                     matteo
+    sudo chown -R matteo:users /home/matteo
 fi
 
 echo "Install dotfiles"
