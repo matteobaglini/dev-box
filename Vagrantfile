@@ -51,12 +51,13 @@ HEREDOC
 echo "Install the latest Node version using NVM"
 sudo -iu matteo <<HEREDOC
     if [ ! -d ~/.nvm ]; then
-        wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.33.2/install.sh \
-            | bash
+        wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.33.2/install.sh | bash
     fi
     source ~/.nvm/nvm.sh
-    nvm install node
-    nvm alias default node
+    if ! node -v &>/dev/null; then
+        nvm install node
+        nvm alias default node
+    fi
 HEREDOC
 
 echo "Install Java"
