@@ -60,6 +60,18 @@ sudo -iu matteo <<HEREDOC
     fi
 HEREDOC
 
+echo "Install Scala and SBT"
+sudo -iu matteo <<HEREDOC
+    if ! scala -version &>/dev/null; then
+        wget -q http://www.scala-lang.org/files/archive/scala-2.12.2.deb
+        sudo dpkg -i scala-2.12.2.deb
+        wget -q http://dl.bintray.com/sbt/debian/sbt-0.13.15.deb
+        sudo dpkg -i sbt-0.13.15.deb
+        sudo apt-get -q -y update
+        sudo apt-get -q -y install scala sbt
+    fi
+HEREDOC
+
 echo "Install Docker and tools"
 sudo -i <<HEREDOC
     if ! docker version &>/dev/null; then
