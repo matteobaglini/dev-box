@@ -3,13 +3,14 @@
 
 $script = <<-SHELL
 echo "Install and update basic packeges"
+sudo apt-get update -q -y
+sudo apt-get install -q -y linux-kernel-headers build-essential
+sudo apt-get install -q -y git curl wget whois unzip tree
+
+echo "Install Gnome GUI"
 sudo add-apt-repository ppa:gnome3-team/gnome3
-sudo apt-get update -q -y 
-sudo apt-get install -q -y git curl wget whois unzip tree \
-                            linux-kernel-headers build-essential \
-                            xorg xclip x11-utils autocutsel \
-                            gdm gnome-terminal vim-gnome \
-                            unclutter >/dev/null
+sudo apt-get install -q -y xorg xclip x11-utils autocutsel unclutter
+sudo apt-get install -q -y gnome-terminal gdm3 gnome-themes-standard vim-gnome
 
 echo "Configure system settings"
 sudo timedatectl set-timezone Europe/Rome
