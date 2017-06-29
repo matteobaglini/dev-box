@@ -8,10 +8,10 @@ sudo apt-get install -q -y linux-kernel-headers build-essential
 sudo apt-get install -q -y git curl wget whois unzip tree
 sudo apt-get install -q -y xorg xclip x11-utils autocutsel unclutter
 
-echo "Install Gnome GUI"
+echo "Install GUI"
 sudo add-apt-repository ppa:gnome3-team/gnome3
 sudo apt-get update -q -y
-sudo apt-get install -q -y gnome-shell gnome-themes-standard gdm gnome-terminal vim-gnome
+sudo apt-get install -q -y libglib2.0-bin gnome-terminal gdm3 vim-gnome
 
 echo "Configure system settings"
 sudo timedatectl set-timezone Europe/Rome
