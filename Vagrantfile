@@ -87,7 +87,7 @@ HEREDOC
 echo "Install .NET Core"
 sudo -iu matteo <<HEREDOC
     if ! dotnet --version &>/dev/null; then
-        sudo sh -c 'echo "deb [arch=amd64] https://apt-mo.trafficmanager.net/repos/dotnet-release/ trusty main" > /etc/apt/sources.list.d/dotnetdev.list'
+        sudo sh -c 'echo "deb [arch=amd64] https://apt-mo.trafficmanager.net/repos/dotnet-release/ yakkety main" > /etc/apt/sources.list.d/dotnetdev.list'
         sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 417A0893
         sudo apt-get update -q -y
         sudo apt-get install -q -y dotnet-dev-1.0.4
