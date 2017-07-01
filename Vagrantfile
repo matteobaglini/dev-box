@@ -112,7 +112,7 @@ echo "That's all, rock on!"
 SHELL
 
 Vagrant.configure(2) do |config|
-  config.vm.box = "ubuntu/trusty64"
+  config.vm.box = "ubuntu/yakkety64"
   config.vm.box_check_update = false
   config.vm.hostname = "ironman"
   # config.vm.synced_folder ENV["USERPROFILE"] + "/dev", "/mnt/host-dev"
