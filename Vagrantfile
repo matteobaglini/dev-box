@@ -7,6 +7,7 @@ sudo apt-get update -q -y
 sudo apt-get install -q -y linux-kernel-headers build-essential
 sudo apt-get install -q -y git curl wget whois unzip tree
 sudo apt-get install -q -y xorg xclip x11-utils autocutsel unclutter
+sudo apt-get install -q -y virtualbox-guest-x11 dkms virtualbox-guest-dkms
 
 echo "Install GUI"
 sudo add-apt-repository ppa:gnome3-team/gnome3
