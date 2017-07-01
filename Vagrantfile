@@ -95,7 +95,7 @@ sudo -iu matteo <<HEREDOC
 HEREDOC
 
 echo "Install Docker and tools"
-sudo -iu matteo <<HEREDOC
+sudo -i <<HEREDOC
     if ! docker version &>/dev/null; then
         wget -qO- https://get.docker.com/ | bash
         sudo usermod -aG docker matteo
