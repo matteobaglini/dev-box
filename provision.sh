@@ -2,11 +2,11 @@
 
 echo ">>>> Install basic packeges and GUI"
 sudo apt-get update -q -y
-sudo apt-get install -q -y linux-kernel-headers build-essential
-sudo apt-get install -q -y git curl wget whois unzip tree
-sudo apt-get install -q -y xorg xclip x11-utils autocutsel unclutter
-sudo apt-get install -q -y virtualbox-guest-x11 dkms virtualbox-guest-dkms
-sudo apt-get install -q -y libglib2.0-bin gnome-terminal gdm3 vim-gnome
+sudo apt-get install -q -y linux-kernel-headers build-essential \
+                            git curl wget whois unzip tree \
+                            xorg xclip x11-utils autocutsel unclutter \
+                            virtualbox-guest-x11 dkms virtualbox-guest-dkms \
+                            libglib2.0-bin gnome-terminal gdm3 vim-gnome
 
 echo ">>>> Configure system settings"
 sudo timedatectl set-timezone Europe/Rome
