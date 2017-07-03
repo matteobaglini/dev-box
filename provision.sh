@@ -1,31 +1,19 @@
 #!/bin/bash
 
-echo "Install and update basic packeges"
+echo ">>>> Install basic packeges and GUI"
 sudo apt-get update -q -y
 sudo apt-get install -q -y linux-kernel-headers build-essential
 sudo apt-get install -q -y git curl wget whois unzip tree
 sudo apt-get install -q -y xorg xclip x11-utils autocutsel unclutter
 sudo apt-get install -q -y virtualbox-guest-x11 dkms virtualbox-guest-dkms
-
-echo "Install GUI"
-sudo add-apt-repository ppa:gnome3-team/gnome3
-sudo apt-get update -q -y
 sudo apt-get install -q -y libglib2.0-bin gnome-terminal gdm3 vim-gnome
 
-echo "Configure system settings"
+echo ">>>> Configure system settings"
 sudo timedatectl set-timezone Europe/Rome
 sudo update-locale LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8
 echo "%sudo ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 
-echo "Install Google Chrome"
-if [ ! -f /etc/apt/sources.list.d/google.list ]; then
-    wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
-    echo "deb http://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google.list
-    sudo apt-get update
-    sudo apt-get install -q -y google-chrome-stable
-fi
-
-echo "Create custom user"
+echo ">>>> Create custom user"
 if ! id -u matteo &>/dev/null; then
     sudo useradd --create-home \
                     --gid users \
@@ -37,12 +25,22 @@ if ! id -u matteo &>/dev/null; then
     sudo chown -R matteo:users /home/matteo
 fi
 
+echo ">>>> Install Google Chrome"
+sudo -iu matteo <<HEREDOC
+    if [ ! -f /etc/apt/sources.list.d/google.list ]; then
+        wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+        sudo sh -c 'echo "deb https://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
+        sudo apt-get update -q -y
+        sudo apt-get install -q -y google-chrome-stable
+    fi
+HEREDOC
+
 echo "Install dotfiles"
 sudo -iu matteo <<HEREDOC
     if [ ! -d ~/dotfiles ]; then
-    git clone --depth 1 \
-        https://github.com/matteobaglini/dotfiles.git \
-        ~/dotfiles
+        git clone --depth 1 \
+            https://github.com/matteobaglini/dotfiles.git \
+            ~/dotfiles
     fi
     cd ~/dotfiles
     bash install.sh
@@ -105,5 +103,5 @@ sudo -i <<HEREDOC
     fi
 HEREDOC
 
-echo "Remember to reboot the box"
-echo "That's all, rock on!"
+echo ">>>> Remember to reboot the box"
+echo ">>>> That's all, rock on!"
