@@ -25,6 +25,16 @@ if ! id -u matteo &>/dev/null; then
     sudo chown -R matteo:users /home/matteo
 fi
 
+echo ">>>> Install Vim 8"
+sudo -i <<HEREDOC
+    if ! vim -h | grep 8 &>/dev/null; then
+        sudo apt-get remove -q -y --purge vim vim-*
+        sudo add-apt-repository ppa:pi-rho/dev
+        sudo apt-get update -q -y
+        sudo apt-get install -q -y vim-gnome
+    fi
+HEREDOC
+
 echo ">>>> Install Google Chrome"
 sudo -iu matteo <<HEREDOC
     if [ ! -f /etc/apt/sources.list.d/google.list ]; then
