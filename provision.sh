@@ -8,9 +8,6 @@ echo "%sudo ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 echo ">>>> Update packages"
 sudo apt-get -q -y update
 
-echo ">>>> Upgreade packages"
-sudo apt-get -q -y upgrade
-
 echo ">>>> Install basic packeges"
 sudo apt-get -q -y install \
     build-essential autoconf linux-kernel-headers \
