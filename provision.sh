@@ -5,19 +5,6 @@ sudo timedatectl set-timezone Europe/Rome
 sudo update-locale LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8
 echo "%sudo ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 
-echo ">>>> Update packages"
-sudo apt-get -q -y update
-
-echo ">>>> Install basic packeges"
-sudo apt-get -q -y install \
-    build-essential autoconf linux-kernel-headers \
-    git curl wget tree whois unzip dkms gpg
-
-echo ">>>> Install GUI packages"
-sudo apt-get install -q -y \
-    xorg xclip x11-utils autocutsel unclutter \
-    gdm3 gnome-session gnome-terminal vim-gnome
-
 echo ">>>> Create custom user"
 if ! id -u matteo &>/dev/null; then
     sudo useradd --create-home \
@@ -29,6 +16,25 @@ if ! id -u matteo &>/dev/null; then
                  matteo
     sudo chown -R matteo:users /home/matteo
 fi
+
+echo ">>>> Update packages"
+sudo apt -q -y update
+
+echo ">>>> Install basic packeges"
+sudo apt -q -y install \
+    build-essential autoconf linux-kernel-headers \
+    git curl wget tree whois unzip dkms gpg htop
+
+echo ">>>> Install GUI packages"
+sudo apt install -q -y \
+    xorg xclip x11-utils autocutsel unclutter \
+    gdm3 gnome-session gnome-terminal
+
+echo ">>>> Install VIM 8"
+sudo apt remove -q -y vim-*
+sudo add-apt-repository ppa:jonathonf/vim
+sudo apt update -q -y
+sudo apt install -q -y vim-gtk3
 
 echo ">>>> Install Google Chrome"
 sudo -iu matteo <<HEREDOC
