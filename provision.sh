@@ -72,6 +72,9 @@ sudo -iu matteo <<HEREDOC
     fi
 HEREDOC
 
+echo ">>>> Install Haskell & Stack"
+wget -qO- https://get.haskellstack.org/ | sh
+
 echo ">>>> Install Docker & tools"
 sudo -i <<HEREDOC
     if ! docker version &>/dev/null; then
