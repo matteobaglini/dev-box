@@ -23,7 +23,7 @@ sudo apt -q -y update
 echo ">>>> Install basic packeges"
 sudo apt -q -y install \
     build-essential autoconf linux-kernel-headers \
-    git curl wget tree whois unzip dkms gpg htop
+    git curl wget tree whois unzip dkms gpg htop jq
 
 echo ">>>> Install GUI packages"
 sudo apt install -q -y \
