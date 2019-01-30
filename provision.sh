@@ -88,4 +88,14 @@ sudo -i <<HEREDOC
     fi
 HEREDOC
 
+echo ">>>> Install Terraform"
+sudo -i <<HEREDOC
+    if ! type terraform > /dev/null; then
+        cd /tmp
+        wget https://releases.hashicorp.com/terraform/0.11.11/terraform_0.11.11_linux_amd64.zip
+        unzip terraform_0.11.11_linux_amd64.zip
+        sudo mv terraform /usr/local/bin/
+    fi
+HEREDOC
+
 echo ">>>> That's all, rock on!"
