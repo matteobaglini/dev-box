@@ -25,6 +25,9 @@ sudo apt -q -y install \
     build-essential autoconf linux-kernel-headers \
     git curl wget tree whois unzip dkms gpg htop jq
 
+wget -q https://github.com/sharkdp/bat/releases/download/v0.10.0/bat_0.10.0_amd64.deb
+
+
 echo ">>>> Install GUI packages"
 sudo apt install -q -y \
     xorg xclip x11-utils autocutsel unclutter \
@@ -35,6 +38,15 @@ sudo apt remove -q -y vim-*
 sudo add-apt-repository ppa:jonathonf/vim
 sudo apt update -q -y
 sudo apt install -q -y vim-gtk3
+
+echo ">>>> Install BAT"
+sudo -i <<HEREDOC
+    if ! type bat > /dev/null; then
+        cd /tmp
+        wget https://github.com/sharkdp/bat/releases/download/v0.10.0/bat_0.10.0_amd64.deb
+        sudo dpkg -i bat_0.10.0_amd64.deb
+    fi
+HEREDOC
 
 echo ">>>> Install Google Chrome"
 sudo -iu matteo <<HEREDOC
