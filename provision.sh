@@ -39,12 +39,17 @@ sudo add-apt-repository ppa:jonathonf/vim
 sudo apt update -q -y
 sudo apt install -q -y vim-gtk3
 
-echo ">>>> Install BAT"
+echo ">>>> Install utilities"
 sudo -i <<HEREDOC
     if ! type bat > /dev/null; then
         cd /tmp
-        wget https://github.com/sharkdp/bat/releases/download/v0.10.0/bat_0.10.0_amd64.deb
+        wget -q https://github.com/sharkdp/bat/releases/download/v0.10.0/bat_0.10.0_amd64.deb
         sudo dpkg -i bat_0.10.0_amd64.deb
+    fi
+    if ! type fd > /dev/null; then
+        cd /tmp
+        wget -q https://github.com/sharkdp/fd/releases/download/v7.2.0/fd_7.2.0_amd64.deb
+        sudo dpkg -i fd_7.2.0_amd64.deb
     fi
 HEREDOC
 
