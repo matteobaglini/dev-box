@@ -23,10 +23,8 @@ sudo apt -q -y update
 echo ">>>> Install basic packeges"
 sudo apt -q -y install \
     build-essential autoconf linux-kernel-headers \
-    git curl wget tree whois unzip dkms gpg htop jq
-
-wget -q https://github.com/sharkdp/bat/releases/download/v0.10.0/bat_0.10.0_amd64.deb
-
+    git curl wget tree whois unzip dkms gpg htop \
+    jq httpie
 
 echo ">>>> Install GUI packages"
 sudo apt install -q -y \
